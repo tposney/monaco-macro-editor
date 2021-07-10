@@ -47,14 +47,10 @@ const relevantTypes = [
         relevantTypes.some(typeFile => file.fileName.includes(typeFile))
       )
       .map(async (file) => {
-        const relativeFileName = path.relative(nodeModulesLoc, file.fileName).replace(/^@types[\/\\]/,'');
-        const outputPath = path.resolve(TYPINGS_DIR, relativeFileName).replace(/^@types[\//]/,'/');
+        const relativeFileName = path.relative(nodeModulesLoc, file.fileName).replace(/^@types[\\/]/,'').replace(/.+[\\/]node_modules[\\/]/, '')
+        const outputPath = path.resolve(TYPINGS_DIR, relativeFileName).replace(/^@types[\\/]/,'/').replace(/.+[\\/]node_modules[\\/]/, '')
         const outputDir = path.dirname(outputPath);
-        console.log({
-          relativeFileName,
-          outputPath,
-          outputDir
-        })
+
         try {
           await mkdirp(outputDir);
         } catch {}
