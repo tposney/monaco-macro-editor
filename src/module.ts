@@ -1,5 +1,6 @@
 import { attachMonacoEditor, registerTypes, setupMonaco } from "./editor";
 import { furnaceFix } from "./fixes/furnace";
+import { bailOnMacroEditor } from "./fixes/macroeditor";
 import { registerSettings } from "./settings";
 
 
@@ -29,6 +30,7 @@ Hooks.on("monaco-editor.ready", async (register: typeof registerTypes) => {
 });
 
 Hooks.on("renderMacroConfig", ({ form }: { form: HTMLFormElement }) => {
+  bailOnMacroEditor()
   furnaceFix(form);
   attachMonacoEditor(form)
 });
