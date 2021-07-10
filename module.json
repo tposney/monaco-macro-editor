@@ -17,7 +17,7 @@
   "dependencies": [],
   "conflicts": [],
   "esmodules": [
-    "/dist/module.js"
+    "dist/module.js"
   ],
   "scripts": [],
   "styles": [],
