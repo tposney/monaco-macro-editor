@@ -5,13 +5,13 @@
   "version": "0.0.1",
   "library": "false",
   "manifestPlusVersion": "1.0.0",
-  "minimumCoreVersion": "0.7.9",
-  "compatibleCoreVersion": "0.7.9",
+  "minimumCoreVersion": "0.8.5",
+  "compatibleCoreVersion": "0.8.5",
   "authors": [
     {
-      "name": "The League of Extraordinary FVTT Developers",
-      "url": "https://github.com/League-of-Foundry-Developers",
-      "discord": "discordID#0001"
+      "name": "Naito",
+      "url": "https://github.com/laquasicinque",
+      "discord": "Naito#1235"
     }
   ],
   "dependencies": [],
