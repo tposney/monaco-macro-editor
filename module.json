@@ -1,8 +1,8 @@
 {
-  "name": "module",
-  "title": "New Module",
-  "description": "",
-  "version": "This is auto replaced",
+  "name": "monaco-editor",
+  "title": "Monaco Macro Editor",
+  "description": "testing monaco",
+  "version": "0.0.1",
   "library": "false",
   "manifestPlusVersion": "1.0.0",
   "minimumCoreVersion": "0.7.9",
@@ -14,21 +14,13 @@
       "discord": "discordID#0001"
     }
   ],
-  "dependencies": [
-
-  ],
-  "conflicts": [
-    
-  ],
+  "dependencies": [],
+  "conflicts": [],
   "esmodules": [
-    "/scripts/module.js"
+    "/dist/module.js"
   ],
-  "scripts": [
-    "/scripts/lib/lib.js"
-  ],
-  "styles": [
-    "/styles/module.css"
-  ],
+  "scripts": [],
+  "styles": [],
   "languages": [
     {
       "lang": "en",

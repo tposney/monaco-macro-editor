@@ -1,0 +1,6 @@
+
+    export default [
+      "@league-of-foundry-developers\\foundry-vtt-types\\src\\foundry\\foundry.js\\pixi\\containers\\canvasLayers\\effectsLayer.d.ts",
+      "/**\n * A CanvasLayer for displaying visual effects like weather, transitions, flashes, or more\n */\ndeclare class EffectsLayer extends CanvasLayer {\n  constructor();\n\n  /**\n   * The weather overlay container\n   * @defaultValue `null`\n   */\n  weather: PIXI.Container | null;\n\n  /**\n   * The currently active weather effect\n   * @defaultValue `null`\n   */\n  weatherEffect: SpecialEffect | null;\n\n  /**\n   * Track any active emitters within this Scene\n   * @defaultValue `[]`\n   */\n  emitters: unknown[]; // I don't believe that this is ever populated right now - Bolts\n\n  /**\n   * @override\n   * @defaultValue `mergeObject(super.layerOptions, { zIndex: 300 })`\n   */\n  static get layerOptions(): CanvasLayer.LayerOptions;\n\n  /** @override */\n  tearDown(): void;\n\n  /**\n   * @override\n   */\n  draw(): Promise<void>;\n\n  drawWeather(): void;\n}\n"
+    ]
+  

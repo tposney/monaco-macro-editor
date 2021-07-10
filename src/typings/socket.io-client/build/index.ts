@@ -1,0 +1,6 @@
+
+    export default [
+      "socket.io-client\\build\\index.d.ts",
+      "import { ManagerOptions } from \"./manager\";\nimport { Socket, SocketOptions } from \"./socket\";\n/**\n * Looks up an existing `Manager` for multiplexing.\n * If the user summons:\n *\n *   `io('http://localhost/a');`\n *   `io('http://localhost/b');`\n *\n * We reuse the existing instance based on same scheme/port/host,\n * and we initialize sockets for each namespace.\n *\n * @public\n */\ndeclare function lookup(opts?: Partial<ManagerOptions & SocketOptions>): Socket;\ndeclare function lookup(uri: string, opts?: Partial<ManagerOptions & SocketOptions>): Socket;\ndeclare function lookup(uri: string | Partial<ManagerOptions & SocketOptions>, opts?: Partial<ManagerOptions & SocketOptions>): Socket;\n/**\n * Protocol version.\n *\n * @public\n */\nexport { protocol } from \"socket.io-parser\";\n/**\n * Expose constructors for standalone build.\n *\n * @public\n */\nexport { Manager, ManagerOptions } from \"./manager\";\nexport { Socket } from \"./socket\";\nexport { lookup as io, SocketOptions };\nexport default lookup;\n"
+    ]
+  

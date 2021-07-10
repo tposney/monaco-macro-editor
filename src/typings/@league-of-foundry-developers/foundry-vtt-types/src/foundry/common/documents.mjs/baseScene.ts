@@ -1,0 +1,6 @@
+
+    export default [
+      "@league-of-foundry-developers\\foundry-vtt-types\\src\\foundry\\common\\documents.mjs\\baseScene.d.ts",
+      "import { DocumentMetadata } from '../abstract/document.mjs';\nimport { Document } from '../abstract/module.mjs';\nimport { BaseAmbientLight } from './baseAmbientLight';\nimport { BaseAmbientSound } from './baseAmbientSound';\nimport { BaseDrawing } from './baseDrawing';\nimport { BaseMeasuredTemplate } from './baseMeasuredTemplate';\nimport { BaseNote } from './baseNote';\nimport { BaseTile } from './baseTile';\nimport { BaseToken } from './baseToken';\nimport { BaseWall } from './baseWall';\n\n/**\n * The base Scene model definition which defines common behavior of an Scene document between both client and server.\n */\nexport declare class BaseScene extends Document<any, any> {\n  static get metadata(): Merge<\n    DocumentMetadata,\n    {\n      name: 'Scene';\n      collection: 'scenes';\n      label: 'DOCUMENT.Scene';\n      isPrimary: true;\n      embedded: {\n        AmbientLight: typeof BaseAmbientLight;\n        AmbientSound: typeof BaseAmbientSound;\n        Drawing: typeof BaseDrawing;\n        MeasuredTemplate: typeof BaseMeasuredTemplate;\n        Note: typeof BaseNote;\n        Tile: typeof BaseTile;\n        Token: typeof BaseToken;\n        Wall: typeof BaseWall;\n      };\n    }\n  >;\n}\n"
+    ]
+  

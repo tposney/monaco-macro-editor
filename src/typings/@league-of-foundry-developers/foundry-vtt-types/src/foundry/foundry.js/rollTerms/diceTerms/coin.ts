@@ -1,0 +1,6 @@
+
+    export default [
+      "@league-of-foundry-developers\\foundry-vtt-types\\src\\foundry\\foundry.js\\rollTerms\\diceTerms\\coin.d.ts",
+      "/**\n * A type of DiceTerm used to represent flipping a two-sided coin.\n */\ndeclare class Coin extends DiceTerm {\n  constructor(termData?: Partial<Coin.TermData>);\n\n  faces: 2;\n\n  /**\n   * @defaultValue `c`\n   */\n  static DENOMINATION: string;\n\n  /**\n   * @defaultValue\n   * ```typescript\n   *  {\n   *    c: \"call\"\n   *  }\n   * ```\n   */\n  static MODIFIERS: Coin.Modifiers;\n\n  /**\n   * @override\n   */\n  roll(options?: { maximize: boolean; minimize: boolean }): DiceTerm.Result;\n\n  /**\n   * @override\n   */\n  getResultLabel(result: DiceTerm.Result): string;\n\n  /**\n   * @override\n   */\n  getResultCSS(result: DiceTerm.Result): (string | null)[];\n\n  /**\n   * Call the result of the coin flip, marking any coins that matched the called target as a success\n   *\n   * 3dcc1      Flip 3 coins and treat \"heads\" as successes\n   * 2dcc0      Flip 2 coins and treat \"tails\" as successes\n   *\n   * @param modifier - The matched modifier query\n   */\n  call(modifier: string): string;\n}\n\ndeclare namespace Coin {\n  interface TermData extends DiceTerm.TermData {\n    modifiers: Array<keyof Modifiers>;\n  }\n\n  interface Modifiers {\n    c: 'call';\n  }\n}\n"
+    ]
+  

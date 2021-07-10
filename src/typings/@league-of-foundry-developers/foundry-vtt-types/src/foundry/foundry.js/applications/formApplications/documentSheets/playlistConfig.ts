@@ -1,0 +1,6 @@
+
+    export default [
+      "@league-of-foundry-developers\\foundry-vtt-types\\src\\foundry\\foundry.js\\applications\\formApplications\\documentSheets\\playlistConfig.d.ts",
+      "// TODO: Remove when updating this class!!!\n// eslint-disable-next-line\n// @ts-nocheck\n\n/**\n * Playlist Configuration Sheet\n */\ndeclare class PlaylistConfig extends DocumentSheet<DocumentSheet.Options, PlaylistConfig.Data, Playlist> {\n  /**\n   * @defaultValue\n   * ```typescript\n   * const options = super.defaultOptions;\n   * options.id = \"playlist-config\";\n   * options.template = \"templates/playlist/edit-playlist.html\";\n   * options.width = 360;\n   * ```\n   */\n  static get defaultOptions(): typeof DocumentSheet['defaultOptions'];\n\n  /**\n   * @override\n   */\n  get title(): string;\n\n  /**\n   * @param options - (unused)\n   * @override\n   */\n  getData(options?: Application.RenderOptions): PlaylistConfig.Data;\n}\n\ndeclare namespace PlaylistConfig {\n  interface Data extends foundry.utils.Duplicated<PlaylistConfig['object']['data']> {\n    modes: Record<string, ValueOf<typeof foundry.CONST['PLAYLIST_MODES']>>;\n  }\n}\n"
+    ]
+  

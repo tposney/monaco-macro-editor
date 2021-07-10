@@ -1,0 +1,6 @@
+
+    export default [
+      "@league-of-foundry-developers\\foundry-vtt-types\\src\\foundry\\foundry.js\\pixi\\containers\\canvasLayers\\placeablesLayers\\templateLayer.d.ts",
+      "/**\n * This Canvas Layer provides a container for MeasuredTemplate objects.\n * @see {@link MeasuredTemplate}\n */\ndeclare class TemplateLayer extends PlaceablesLayer<MeasuredTemplate> {\n  /**\n   * @override\n   * @defaultValue\n   * ```\n   * mergeObject(super.layerOptions, {\n   *   canDragCreate: true,\n   *   canDelete: true,\n   *   rotatableObjects: true,\n   *   objectClass: MeasuredTemplate,\n   *   sheetClass: MeasuredTemplateConfig,\n   *   sortActiveTop: true,\n   *   zIndex: 50\n   * })\n   * ```\n   */\n  static get layerOptions(): PlaceablesLayer.LayerOptions;\n\n  /** @override */\n  activate(): this;\n\n  /** @override */\n  deactivate(): this;\n\n  /**\n   * Register game settings used by the TemplatesLayer\n   */\n  static registerSettings(): void;\n\n  /** @override */\n  protected _onDragLeftStart(event: PIXI.InteractionEvent): void;\n\n  /** @override */\n  protected _onDragLeftMove(event: PIXI.InteractionEvent): void;\n\n  /**\n   * @override\n   * @remarks Returns `Promise<MeasuredTemplate> | undefined`\n   */\n  protected _onMouseWheel(event: WheelEvent): any;\n}\n"
+    ]
+  

@@ -1,0 +1,6 @@
+
+    export default [
+      "@league-of-foundry-developers\\foundry-vtt-types\\src\\foundry\\common\\documents.mjs\\baseToken.d.ts",
+      "import { ConfiguredDocumentClass } from '../../../types/helperTypes';\nimport { DocumentMetadata } from '../abstract/document.mjs';\nimport { Document } from '../abstract/module.mjs';\nimport * as data from '../data/data.mjs';\nimport { BaseUser } from './baseUser';\n\n/**\n * The base Token model definition which defines common behavior of an Token document between both client and server.\n */\nexport declare class BaseToken extends Document<\n  data.TokenData,\n  InstanceType<ConfiguredDocumentClass<typeof foundry.documents.BaseScene>>\n> {\n  static get schema(): typeof data.TokenData;\n\n  static get metadata(): Merge<\n    DocumentMetadata,\n    {\n      name: 'Token';\n      collection: 'tokens';\n      label: 'DOCUMENT.Token';\n      isEmbedded: true;\n      permissions: {\n        create: 'TOKEN_CREATE';\n        update: typeof BaseToken['_canUpdate'];\n      };\n    }\n  >;\n\n  /**\n   * A convenience reference to the name which should be displayed for the Token\n   */\n  get name(): string;\n\n  /**\n   * Is a user able to update an existing Token?\n   */\n  protected static _canUpdate(user: BaseUser, doc: BaseToken, data: unknown): boolean;\n}\n"
+    ]
+  

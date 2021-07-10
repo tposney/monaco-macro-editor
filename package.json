@@ -1,0 +1,46 @@
+{
+  "name": "monaco-macro",
+  "version": "1.0.0",
+  "description": "![](https://img.shields.io/badge/Foundry-v0.8.6-informational) <!--- Downloads @ Latest Badge --> <!--- replace <user>/<repo> with your username/repository --> <!--- ![Latest Release Download Count](https://img.shields.io/github/downloads/<user>/<repo>/latest/module.zip) -->",
+  "browser": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laquasicinque/monaco-macro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laquasicinque/monaco-macro/issues"
+  },
+  "homepage": "https://github.com/laquasicinque/monaco-macro#readme",
+  "devDependencies": {
+    "@league-of-foundry-developers/foundry-vtt-types": "^0.8.8-2",
+    "@types/rimraf": "^3.0.1",
+    "glob": "^7.1.7",
+    "jquery": "^3.6.0",
+    "mkdirp": "^1.0.4",
+    "monaco-editor-webpack-plugin": "^4.0.0",
+    "rimraf": "^3.0.2",
+    "socket.io-client": "^4.1.2",
+    "tslib": "^2.3.0",
+    "typescript": "^4.3.5",
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "@types/node": "^16.3.0",
+    "@types/webpack": "^5.28.0",
+    "@types/webpack-env": "^1.16.2",
+    "css-loader": "^5.2.6",
+    "file-loader": "^6.2.0",
+    "monaco-editor": "^0.25.2",
+    "raw-loader": "^4.0.2",
+    "style-loader": "^3.0.0",
+    "ts-loader": "^9.2.3"
+  }
+}

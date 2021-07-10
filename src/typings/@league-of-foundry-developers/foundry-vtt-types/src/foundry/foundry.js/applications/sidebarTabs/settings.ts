@@ -1,0 +1,6 @@
+
+    export default [
+      "@league-of-foundry-developers\\foundry-vtt-types\\src\\foundry\\foundry.js\\applications\\sidebarTabs\\settings.d.ts",
+      "/**\n * A SidebarTab for providing help messages and settings configurations.\n * The Settings sidebar is the furthest-to-right using a triple-cogs icon.\n */\ndeclare class Settings extends SidebarTab<Settings.Options> {\n  /**\n   * @override\n   */\n  static get defaultOptions(): Settings.Options;\n\n  /**\n   * @param options - (unused)\n   * @override\n   */\n  getData(options?: Application.RenderOptions): Settings.Data;\n\n  /**\n   * @override\n   */\n  activateListeners(html: JQuery): void;\n\n  /**\n   * Delegate different actions for different settings buttons\n   */\n  protected _onSettingsButton(event: JQuery.ClickEvent): void;\n}\n\ndeclare namespace Settings {\n  interface Data {\n    user: User;\n    system: Game['system'];\n    coreVersion: string;\n    canConfigure: boolean;\n    canSetup: boolean;\n    coreUpdate: string | false;\n    modules: number;\n  }\n\n  interface Options extends SidebarTab.Options {\n    /**\n     * @defaultValue `'settings'`\n     */\n    id: string;\n\n    /**\n     * @defaultValue `'templates/sidebar/settings.html'`\n     */\n    template: string;\n\n    /**\n     * @defaultValue `'Setttings'`\n     */\n    title: string;\n  }\n}\n"
+    ]
+  

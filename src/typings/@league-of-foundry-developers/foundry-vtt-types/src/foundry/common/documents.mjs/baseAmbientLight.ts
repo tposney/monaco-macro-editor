@@ -1,0 +1,6 @@
+
+    export default [
+      "@league-of-foundry-developers\\foundry-vtt-types\\src\\foundry\\common\\documents.mjs\\baseAmbientLight.d.ts",
+      "import { ConfiguredDocumentClass } from '../../../types/helperTypes';\nimport { DocumentMetadata } from '../abstract/document.mjs';\nimport { Document } from '../abstract/module.mjs';\nimport * as data from '../data/data.mjs';\nimport { BaseScene } from './baseScene';\n\n/**\n * The base AmbientLight model definition which defines common behavior of an AmbientLight document between both client and server.\n */\nexport declare class BaseAmbientLight extends Document<\n  data.AmbientLightData,\n  InstanceType<ConfiguredDocumentClass<typeof BaseScene>>\n> {\n  static get schema(): typeof data.AmbientLightData;\n\n  static get metadata(): Merge<\n    DocumentMetadata,\n    {\n      name: 'AmbientLight';\n      collection: 'lights';\n      label: 'DOCUMENT.AmbientLight';\n      isEmbedded: true;\n    }\n  >;\n\n  /** @override */\n  protected _initialize(): void;\n}\n"
+    ]
+  

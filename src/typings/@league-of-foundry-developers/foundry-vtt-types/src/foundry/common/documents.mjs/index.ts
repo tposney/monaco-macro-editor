@@ -1,0 +1,6 @@
+
+    export default [
+      "@league-of-foundry-developers\\foundry-vtt-types\\src\\foundry\\common\\documents.mjs\\index.d.ts",
+      "export { BaseActiveEffect } from './baseActiveEffect';\nexport { BaseActor } from './baseActor';\nexport { BaseAmbientLight } from './baseAmbientLight';\nexport { BaseAmbientSound } from './baseAmbientSound';\nexport { BaseCombat } from './baseCombat';\nexport { BaseCombatant } from './baseCombatant';\nexport { BaseChatMessage } from './baseChatMessage';\nexport { BaseDrawing } from './baseDrawing';\nexport { BaseFogExploration } from './baseFogExploration';\nexport { BaseFolder } from './baseFolder';\nexport { BaseItem } from './baseItem';\nexport { BaseJournalEntry } from './baseJournalEntry';\nexport { BaseMacro } from './baseMacro';\nexport { BaseMeasuredTemplate } from './baseMeasuredTemplate';\nexport { BaseNote } from './baseNote';\nexport { BasePlaylist } from './basePlaylist';\nexport { BasePlaylistSound } from './basePlaylistSound';\nexport { BaseRollTable } from './baseRollTable';\nexport { BaseScene } from './baseScene';\nexport { BaseSetting } from './baseSetting';\nexport { BaseTableResult } from './baseTableResult';\nexport { BaseTile } from './baseTile';\nexport { BaseToken } from './baseToken';\nexport { BaseUser } from './baseUser';\nexport { BaseWall } from './baseWall';\n"
+    ]
+  
