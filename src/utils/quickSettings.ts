@@ -6,11 +6,14 @@ type Settings = {
   wordWrap: boolean;
 };
 
+/**
+ * Because I'm lazy
+ */
 export const settings: Settings = new Proxy({} as unknown as Settings, {
   get(_t: never, k: string) {
     if (!("settings" in game)) {
       throw new Error("Settings missing");
     }
-    return game.settings.get("monaco-editor", k);
+    return game.settings.get("monaco-macro-editor", k);
   },
 });

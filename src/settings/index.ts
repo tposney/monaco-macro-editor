@@ -1,48 +1,54 @@
+import { titleCase } from "../utils/titleCase";
+
+type JSPrimitive<T> = {
+  constructor: ClientSettings.PartialSetting<T>["type"];
+};
+
 export function registerSettings() {
+  defineSetting("theme", {
+    default: "vs-dark",
+    choices: {
+      "vs-dark": "Dark",
+      vs: "Light",
+      "hc-black": "High Contrast",
+    },
+  });
+
+  defineSetting("fontFamily", {
+    default: `Jetbrains Mono, Fira Code, san-serif`,
+    type: String,
+  });
+
+  defineSetting("fontLigatures", {
+    type: Boolean,
+    default: true,
+  });
+
+  defineSetting("fontSize", {
+    type: Number,
+    default: 12,
+  });
+
+  defineSetting("wordWrap", {
+    type: Boolean,
+    default: true,
+  });
+}
+
+function defineSetting<T>(
+  settingName: string,
+  options: Partial<ClientSettings.PartialSetting<T>>
+): void {
   if ("settings" in game) {
-    game.settings.register("monaco-editor", "theme", {
+    game.settings.register<string, string, T>("monaco-macro-editor", settingName, {
       scope: "client",
       config: true,
-      name: "Theme",
-      type: String,
-      default: "vs-dark",
-      choices: {
-        "vs-dark": "Dark",
-        vs: "Light",
-        "hc-black": "High Contrast",
-      },
-    });
-
-    game.settings.register("monaco-editor", "fontFamily", {
-      scope: "client",
-      config: true,
-      name: "Font Family",
-      default: `Jetbrains Mono, Fira Code, sanserif`,
-      type: String,
-    });
-
-    game.settings.register("monaco-editor", "fontLigatures", {
-      scope: "client",
-      config: true,
-      name: "Font Ligatures",
-      type: Boolean,
-      default: true,
-    });
-
-    game.settings.register("monaco-editor", "fontSize", {
-      scope: "client",
-      config: true,
-      name: "Font Size",
-      type: Number,
-      default: 12,
-    });
-
-    game.settings.register("monaco-editor", "wordWrap", {
-      scope: "client",
-      config: true,
-      name: "Word Wrap",
-      type: Boolean,
-      default: true,
+      name: titleCase(settingName),
+      type:
+        options.type ??
+        (options.default as unknown as JSPrimitive<T>).constructor ??
+        undefined,
+      ...options,
     });
   }
 }

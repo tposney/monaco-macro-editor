@@ -98,10 +98,11 @@ export function attachMonacoEditor (form: HTMLFormElement) {
   select.addEventListener("change", (e) => {
     const model = editor.getModel();
     if (!model) return;
-    if (select.value === "script") {
-      monaco.editor.setModelLanguage(model, "javascript");
-    } else if (select.value === "chat") {
-      monaco.editor.setModelLanguage(model, "plaintext");
+
+
+    monaco.editor.setModelLanguage(model, select.value === "script" ? "javascript" : "plaintext",)
+    if (!["script","chat"].includes(select.value)) {
+      console.warn(`Monaco Editor: Received "${select.value}" from select, defaulted to plaintext editor`)
     }
   });
 }
