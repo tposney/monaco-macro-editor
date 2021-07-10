@@ -1,4 +1,3 @@
-import * as monaco from "monaco-editor";
 import { attachMonacoEditor, registerTypes, setupMonaco } from "./editor";
 import { furnaceFix } from "./fixes/furnace";
 import { registerSettings } from "./settings";
