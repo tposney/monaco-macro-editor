@@ -1,9 +1,10 @@
-import * as monaco from "monaco-editor";
 import { debounce } from "./utils/debounce";
 import { settings } from "./settings";
 import { NewOptionsType } from "./types";
+import type * as MonacoTypings from "monaco-editor";
 
-const activeEditors = new Set<monaco.editor.IStandaloneCodeEditor>();
+const activeEditors = new Set<MonacoTypings.editor.IStandaloneCodeEditor>();
+export let monaco: typeof import("monaco-editor");
 
 export function updateActiveEditors<T extends keyof NewOptionsType>(
   str: T,
@@ -16,24 +17,33 @@ export function updateActiveEditors<T extends keyof NewOptionsType>(
   }
 }
 
-export function registerTypes(filePath: string, code: string) {
-  const modifiedPath = filePath
-    // strip relative
-    .replace(/^(?:\.\.?\/)*/giu, "")
-    // replace starting point with `injected/`
-    .replace(/^\/?/gu, "injected/")
-    // add/replace ending with `.d.ts`
-    .replace(/(?:(:\.\d)?\.ts)?\$/giu, ".d.ts");
+export let registerTypes = (_: string, __: string): void => {};
 
-  monaco.languages.typescript.javascriptDefaults.addExtraLib(
-    code,
-    modifiedPath
-  );
+export async function setupMonaco() {
+  monaco = await import("monaco-editor");
 
-  monaco.editor.createModel(code, "typescript", monaco.Uri.parse(modifiedPath));
-}
+  // redefine registerTypes
+  registerTypes = async function registerTypes(filePath: string, code: string) {
+    const modifiedPath = filePath
+      // strip relative
+      .replace(/^(?:\.\.?\/)*/giu, "")
+      // replace starting point with `injected/`
+      .replace(/^\/?/gu, "injected/")
+      // add/replace ending with `.d.ts`
+      .replace(/(?:(:\.\d)?\.ts)?\$/giu, ".d.ts");
 
-export function setupMonaco() {
+    monaco.languages.typescript.javascriptDefaults.addExtraLib(
+      code,
+      modifiedPath
+    );
+
+    monaco.editor.createModel(
+      code,
+      "typescript",
+      monaco.Uri.parse(modifiedPath)
+    );
+  };
+
   monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
     noSemanticValidation: true,
     noSyntaxValidation: false,

@@ -12,6 +12,7 @@ type Settings = {
   theme: string;
   fontSize: number;
   wordWrap: boolean;
+  enableMonacoEditor: boolean;
 };
 
 /**
@@ -39,26 +40,30 @@ export function registerSettings() {
 
   defineSetting("fontFamily", {
     default: `Jetbrains Mono, Fira Code, san-serif`,
-    type: String,
   });
 
   defineSetting("fontLigatures", {
-    type: Boolean,
     default: true,
   });
 
   defineSetting("fontSize", {
-    type: Number,
     default: 12,
   });
 
   defineSetting("wordWrap", {
-    type: Boolean,
     default: true,
     onChange(value) {
       updateActiveEditors("wordWrap", value ? "on" : "off")
     }
   });
+
+  defineSetting("enableMonacoEditor", {
+    default: true,
+    onChange: () => {
+      // force a reload
+      window.location.reload()
+    }
+  })
 }
 
 function defineSetting<T>(

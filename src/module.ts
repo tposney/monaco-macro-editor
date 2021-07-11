@@ -1,17 +1,19 @@
 import { attachMonacoEditor, registerTypes, setupMonaco } from "./editor";
 import { furnaceFix } from "./fixes/furnace";
 import { bailOnMacroEditor } from "./fixes/macroeditor";
-import { registerSettings } from "./settings";
+import { registerSettings, settings } from "./settings";
 
 
 Hooks.once("init", async function () {
   registerSettings();
-  setupMonaco()
-
-  Hooks.callAll("monaco-editor.ready", registerTypes);
+  if (settings.enableMonacoEditor) {
+    await setupMonaco()
+    Hooks.callAll("monaco-editor.ready", registerTypes);
+  }
 });
 
 Hooks.on("monaco-editor.ready", async (register: typeof registerTypes) => {
+  console.log("Monaco Editor | Load types")
   // Load in definitions from @league-of-foundry-developers/foundry-vtt-types
   const context = require.context("./typings", true, /\.ts$/i, "lazy-once");
   const results = await Promise.allSettled(
@@ -30,7 +32,9 @@ Hooks.on("monaco-editor.ready", async (register: typeof registerTypes) => {
 });
 
 Hooks.on("renderMacroConfig", ({ form }: { form: HTMLFormElement }) => {
-  bailOnMacroEditor()
-  furnaceFix(form);
-  attachMonacoEditor(form)
+  if (settings.enableMonacoEditor) {
+    bailOnMacroEditor()
+    furnaceFix(form);
+    attachMonacoEditor(form)
+  }
 });
