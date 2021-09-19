@@ -20,6 +20,10 @@ export function updateActiveEditors<T extends keyof NewOptionsType>(
 export let registerTypes = (_: string, __: string): void => {};
 
 export async function setupMonaco() {
+  // make sure that process.env exists before initializing monaco
+  // @ts-ignore
+  (globalThis.process ??= {}).env ??= {};
+
   monaco = await import("monaco-editor");
 
   // redefine registerTypes
@@ -75,6 +79,8 @@ export function attachMonacoEditor(form: HTMLFormElement) {
   if (!oldTextArea || !commandLabel) {
     throw new Error("Monaco Macro Editor | Couldn't find old text area");
   }
+
+  oldTextArea.style.display = "none";
 
   const div = document.createElement("div");
   Object.assign(div.style, { width: "100%", height: "calc(100% - 24px)" });

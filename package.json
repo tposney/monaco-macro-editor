@@ -25,6 +25,7 @@
     "@league-of-foundry-developers/foundry-vtt-types": "^0.8.8-5",
     "@types/rimraf": "^3.0.1",
     "cross-env": "^7.0.3",
+    "dts-minify": "^0.2.3",
     "glob": "^7.1.7",
     "jquery": "^3.6.0",
     "mkdirp": "^1.0.4",

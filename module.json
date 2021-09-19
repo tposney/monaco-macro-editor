@@ -6,7 +6,7 @@
   "library": "false",
   "manifestPlusVersion": "1.0.0",
   "minimumCoreVersion": "0.8.5",
-  "compatibleCoreVersion": "0.8.5",
+  "compatibleCoreVersion": "0.8.9",
   "authors": [
     {
       "name": "Naito",
@@ -16,11 +16,9 @@
   ],
   "dependencies": [],
   "conflicts": [],
-  "esmodules": [
-    "dist/module.js"
-  ],
+  "esmodules": ["dist/module.js"],
   "scripts": [],
-  "styles": [],
+  "styles": ["styles/module.css"],
   "languages": [
     {
       "lang": "en",

@@ -27,7 +27,6 @@ export const settings: Settings = new Proxy({} as unknown as Settings, {
   },
 });
 
-
 export function registerSettings() {
   defineSetting("theme", {
     default: "vs-dark",
@@ -39,7 +38,7 @@ export function registerSettings() {
   });
 
   defineSetting("fontFamily", {
-    default: `Jetbrains Mono, Fira Code, san-serif`,
+    default: `Jetbrains Mono, Fira Code, monospace`,
   });
 
   defineSetting("fontLigatures", {
@@ -53,17 +52,17 @@ export function registerSettings() {
   defineSetting("wordWrap", {
     default: true,
     onChange(value) {
-      updateActiveEditors("wordWrap", value ? "on" : "off")
-    }
+      updateActiveEditors("wordWrap", value ? "on" : "off");
+    },
   });
 
   defineSetting("enableMonacoEditor", {
     default: true,
     onChange: () => {
       // force a reload
-      window.location.reload()
-    }
-  })
+      window.location.reload();
+    },
+  });
 }
 
 function defineSetting<T>(
@@ -71,18 +70,22 @@ function defineSetting<T>(
   options: Partial<ClientSettings.PartialSetting<T>>
 ): void {
   if ("settings" in game) {
-    game.settings.register<string, string, T>("monaco-macro-editor", settingName, {
-      scope: "client",
-      config: true,
-      name: titleCase(settingName),
-      type:
-        options.type ??
-        (options.default as unknown as JSPrimitive<T>).constructor ??
-        undefined,
-      onChange: (value) => {
-        updateActiveEditors(settingName as keyof NewOptionsType, value)
-      },
-      ...options,
-    });
+    game.settings.register<string, string, T>(
+      "monaco-macro-editor",
+      settingName,
+      {
+        scope: "client",
+        config: true,
+        name: titleCase(settingName),
+        type:
+          options.type ??
+          (options.default as unknown as JSPrimitive<T>).constructor ??
+          undefined,
+        onChange: (value) => {
+          updateActiveEditors(settingName as keyof NewOptionsType, value);
+        },
+        ...options,
+      }
+    );
   }
 }

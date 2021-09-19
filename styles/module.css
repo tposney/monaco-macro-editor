@@ -1,0 +1,14 @@
+.monaco-editor .inputarea {
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: absolute !important;
+  resize: none !important;
+  border: none !important;
+  overflow: hidden !important;
+  color: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}

@@ -7,6 +7,7 @@ const ROOT = path.resolve(__dirname, "..");
 const TYPINGS_DIR = path.resolve(ROOT, "src/typings");
 const FOUNDRY_TYPES_FILE = `@league-of-foundry-developers/foundry-vtt-types`;
 const ts = require("typescript");
+const minifier = require("dts-minify").createMinifier(ts);
 const rimraf = require("rimraf");
 
 if (!existsSync(path.resolve(ROOT, "./node_modules")))
@@ -22,10 +23,9 @@ const { files, dependencies } = require(path.join(
 const relevantTypes = [
   "@league-of-foundry-developers",
   ...Object.keys(dependencies)
-  .filter(item => item !== 'typescript')
-  .map(item => item.replace(/^@types\//, ''))
+    .filter((item) => item !== "typescript")
+    .map((item) => item.replace(/^@types\//, "")),
 ];
-
 
 (async () => {
   const nodeModulesLoc = path.resolve("node_modules");
@@ -44,22 +44,28 @@ const relevantTypes = [
     program
       .getSourceFiles()
       .filter((file) =>
-        relevantTypes.some(typeFile => file.fileName.includes(typeFile))
+        relevantTypes.some((typeFile) => file.fileName.includes(typeFile))
       )
       .map(async (file) => {
-        const relativeFileName = path.relative(nodeModulesLoc, file.fileName).replace(/^@types[\\/]/,'').replace(/.+[\\/]node_modules[\\/]/, '')
-        const outputPath = path.resolve(TYPINGS_DIR, relativeFileName).replace(/^@types[\\/]/,'/').replace(/.+[\\/]node_modules[\\/]/, '')
+        const relativeFileName = path
+          .relative(nodeModulesLoc, file.fileName)
+          .replace(/^@types[\\/]/, "")
+          .replace(/.+[\\/]node_modules[\\/]/, "");
+        const outputPath = path
+          .resolve(TYPINGS_DIR, relativeFileName)
+          .replace(/^@types[\\/]/, "/")
+          .replace(/.+[\\/]node_modules[\\/]/, "");
         const outputDir = path.dirname(outputPath);
 
         try {
           await mkdirp(outputDir);
         } catch {}
+
+        let contents = await fs.readFile(file.fileName, "utf8");
+        if (false) contents = minifier.minify(contents, { keepJsDocs: true });
         return fs.writeFile(
           path.resolve(outputPath.replace(/(?:(\.d)?\.ts)?$/, ".ts")),
-          makeDefContent(
-            relativeFileName,
-            await fs.readFile(file.fileName, "utf8")
-          )
+          makeDefContent(relativeFileName, contents)
         );
       })
   );
