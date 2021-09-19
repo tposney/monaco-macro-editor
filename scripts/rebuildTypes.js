@@ -67,11 +67,15 @@ const relevantTypes = [
         let contents = await fs.readFile(file.fileName, "utf8");
 
         if (MINIFY_TYPES) {
-          console.log("Minifying")
-          contents = minifier.minify(contents, { keepJsDocs: true });
+          // This is a bit of a hack, we're replacing newlines on unix with carriage returns
+          // as the minifier doesn't seem to deal well with them, which we'll use as a feature
+          contents.replace(/\r\n/g, '\n')
+          // replace our hacky carriage returns with new lines
+          contents = minifier.minify(contents, { keepJsDocs: true })
         }
+
         return fs.writeFile(
-          path.resolve(outputPath.replace(/(?:(\.d)?\.ts)?$/, ".ts")),
+          path.resolve(outputPath.replace(/(?:(\.d)?\.ts)?$/, ".ts")).replace(/\\/g,'/'),
           makeDefContent(relativeFileName, contents)
         );
       })

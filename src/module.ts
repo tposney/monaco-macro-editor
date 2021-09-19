@@ -7,10 +7,8 @@ import { registerSettings, settings } from "./settings";
 Hooks.once("init", async function () {
   registerSettings();
   if (settings.enableMonacoEditor) {
-    await setupMonaco()
-    if(settings.loadTypesImmediately) {
-      Hooks.callAll("monaco-editor.ready", registerTypes);
-    }
+    if(!settings.delayedLoading)
+      await setupMonaco()
   }
 });
 

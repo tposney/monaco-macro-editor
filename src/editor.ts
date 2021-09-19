@@ -26,6 +26,7 @@ export async function setupMonaco() {
 
   monaco = await import("monaco-editor");
 
+
   // redefine registerTypes
   registerTypes = async function registerTypes(filePath: string, code: string) {
     const modifiedPath = filePath
@@ -66,11 +67,25 @@ export async function setupMonaco() {
     allowSyntheticDefaultImports: true,
     esModuleInterop: true,
   });
+
+  if(settings.loadTypesImmediately) {
+    Hooks.callAll("monaco-editor.ready", registerTypes);
+  }
 }
 
 let typesLoaded = false
+let monacoLoaded = false
 
-export function attachMonacoEditor(form: HTMLFormElement) {
+export async function attachMonacoEditor(form: HTMLFormElement) {
+  if(!monacoLoaded) {
+     // settings is not available all the time so we need to do this in fairly dumb way
+    if(!settings.delayedLoading) {
+      monacoLoaded = true
+    } else {
+      await setupMonaco()
+      monacoLoaded = true
+    }
+  }
   const oldTextArea = form.querySelector<HTMLTextAreaElement>(
     'textarea[name="command"]'
   );

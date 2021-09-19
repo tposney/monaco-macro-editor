@@ -1,4 +1,4 @@
-import { updateActiveEditors } from "../editor";
+import { setupMonaco, updateActiveEditors } from "../editor";
 import { NewOptionsType } from "../types";
 import { titleCase } from "../utils/titleCase";
 
@@ -13,7 +13,8 @@ type Settings = {
   fontSize: number;
   wordWrap: boolean;
   enableMonacoEditor: boolean;
-  loadTypesImmediately: boolean
+  loadTypesImmediately: boolean;
+  delayedLoading: boolean;
 };
 
 /**
@@ -37,6 +38,24 @@ export function registerSettings() {
       "hc-black": "High Contrast",
     },
   });
+
+  defineSetting("delayedLoading", {
+    hint: "Delay the loading of the monaco editor until the first editor is opened",
+    default: true,
+    onChange (value) {
+      if(!value) {
+        setupMonaco()
+      }
+    }
+  })
+
+  defineSetting('loadTypesImmediately', {
+    default:false,
+    hint: "Load types as soon as possible. If this is false then they'll be loaded when the first editor is opened.",
+    onChange: () => {
+      window.location.reload()
+    }
+  })
 
   defineSetting("fontFamily", {
     default: `Jetbrains Mono, Fira Code, monospace`,
@@ -65,17 +84,11 @@ export function registerSettings() {
     },
   });
 
-  defineSetting('loadTypesAsap', {
-    default:false,
-    hint: "Load types as soon as possible. If this is false then they'll be loaded when the first editor is opened.",
-    onChange: () => {
-      window.location.reload()
-    }
-  })
+
 }
 
 function defineSetting<T>(
-  settingName: string,
+  settingName: keyof Settings,
   options: Partial<ClientSettings.PartialSetting<T>>
 ): void {
   if ("settings" in game) {
