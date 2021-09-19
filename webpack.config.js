@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/module.ts',
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   output: {
-    publicPath: '/modules/monaco-macro-editor/dist/',
+    publicPath: 'modules/monaco-macro-editor/dist/',
     path: path.resolve(__dirname, 'dist'),
     filename: 'module.js',
   },
