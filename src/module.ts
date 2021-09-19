@@ -8,7 +8,9 @@ Hooks.once("init", async function () {
   registerSettings();
   if (settings.enableMonacoEditor) {
     await setupMonaco()
-    Hooks.callAll("monaco-editor.ready", registerTypes);
+    if(settings.loadTypesImmediately) {
+      Hooks.callAll("monaco-editor.ready", registerTypes);
+    }
   }
 });
 

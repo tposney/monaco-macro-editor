@@ -1,6 +1,6 @@
 
     export default [
       "@league-of-foundry-developers\\foundry-vtt-types\\src\\types\\augments\\simple-peer.d.ts",
-      "import * as SimplePeer from 'simple-peer';\nexport = SimplePeer;\nexport as namespace SimplePeer;\n"
+      "import*as _SimplePeer from'simple-peer';declare global{namespace SimplePeer{type Options=_SimplePeer.Options;type SimplePeer=_SimplePeer.SimplePeer;type TypedArray=_SimplePeer.TypedArray;type SimplePeerData=_SimplePeer.SimplePeerData;type SignalData=_SimplePeer.SignalData;type Instance=_SimplePeer.Instance;}const SimplePeer:SimplePeer.SimplePeer;}"
     ]
   

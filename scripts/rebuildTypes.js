@@ -10,6 +10,8 @@ const ts = require("typescript");
 const minifier = require("dts-minify").createMinifier(ts);
 const rimraf = require("rimraf");
 
+const MINIFY_TYPES = process.env.MINIFY ?? false
+
 if (!existsSync(path.resolve(ROOT, "./node_modules")))
   cheerio("No Node Modules.");
 if (!existsSync(path.resolve(ROOT, "./node_modules", FOUNDRY_TYPES_FILE)))
@@ -25,6 +27,7 @@ const relevantTypes = [
   ...Object.keys(dependencies)
     .filter((item) => item !== "typescript")
     .map((item) => item.replace(/^@types\//, "")),
+    "typescript/lib/lib"
 ];
 
 (async () => {
@@ -35,7 +38,7 @@ const relevantTypes = [
   const program = ts.createProgram(
     files.map((file) => path.resolve("node_modules", FOUNDRY_TYPES_FILE, file)),
     {
-      noLib: true,
+      noLib: false,
       libs: [],
     }
   );
@@ -62,7 +65,11 @@ const relevantTypes = [
         } catch {}
 
         let contents = await fs.readFile(file.fileName, "utf8");
-        if (false) contents = minifier.minify(contents, { keepJsDocs: true });
+
+        if (MINIFY_TYPES) {
+          console.log("Minifying")
+          contents = minifier.minify(contents, { keepJsDocs: true });
+        }
         return fs.writeFile(
           path.resolve(outputPath.replace(/(?:(\.d)?\.ts)?$/, ".ts")),
           makeDefContent(relativeFileName, contents)

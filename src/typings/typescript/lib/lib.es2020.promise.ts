@@ -1,0 +1,6 @@
+
+    export default [
+      "typescript\\lib\\lib.es2020.promise.d.ts",
+      "/// <reference no-default-lib=\"true\"/>\r\ninterface PromiseFulfilledResult<T>{status:\"fulfilled\";value:T;}interface PromiseRejectedResult{status:\"rejected\";reason:any;}type PromiseSettledResult<T>=PromiseFulfilledResult<T>|PromiseRejectedResult;interface PromiseConstructor{/**\r * Creates a Promise that is resolved with an array of results when all\r * of the provided Promises resolve or reject.\r * @param values An array of Promises.\r * @returns A new Promise.\r */\nallSettled<T extends readonly unknown[]|readonly[unknown]>(values:T):Promise<{-readonly[P in keyof T]:PromiseSettledResult<T[P]extends PromiseLike<infer U>?U:T[P]>}>;/**\r * Creates a Promise that is resolved with an array of results when all\r * of the provided Promises resolve or reject.\r * @param values An array of Promises.\r * @returns A new Promise.\r */\nallSettled<T>(values:Iterable<T>):Promise<PromiseSettledResult<T extends PromiseLike<infer U>?U:T>[]>;}"
+    ]
+  

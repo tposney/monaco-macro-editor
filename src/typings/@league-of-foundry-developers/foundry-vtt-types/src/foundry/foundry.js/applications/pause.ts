@@ -1,6 +1,6 @@
 
     export default [
       "@league-of-foundry-developers\\foundry-vtt-types\\src\\foundry\\foundry.js\\applications\\pause.d.ts",
-      "/**\n * Pause notification in the HUD\n */\ndeclare class Pause<D extends Pause.Data = Pause.Data> extends Application {\n  static get defaultOptions(): typeof Application['defaultOptions'];\n\n  /**\n   * Prepare the default data which is required to render the Pause UI\n   */\n  getData(): D | Promise<D>;\n}\n\ndeclare namespace Pause {\n  interface Data {\n    paused: boolean;\n  }\n}\n"
+      "/**\n * Pause notification in the HUD\n *\n * @typeParam Options - the type of the options object\n * @typeParam Data    - The data structure used to render the handlebars template.\n */declare class Pause<\nOptions extends Application.Options=Application.Options,Data extends object=Pause.Data>extends Application<Options>{static get defaultOptions():Application.Options;/** @override */\ngetData(options?:Partial<Options>):Data|Promise<Data>;}declare namespace Pause{interface Data{paused:boolean;}}"
     ]
   

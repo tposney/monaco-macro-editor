@@ -68,6 +68,8 @@ export async function setupMonaco() {
   });
 }
 
+let typesLoaded = false
+
 export function attachMonacoEditor(form: HTMLFormElement) {
   const oldTextArea = form.querySelector<HTMLTextAreaElement>(
     'textarea[name="command"]'
@@ -75,6 +77,11 @@ export function attachMonacoEditor(form: HTMLFormElement) {
   const commandLabel = form.querySelector<HTMLLabelElement>(
     ".form-group.command"
   );
+
+  if(!typesLoaded) {
+    typesLoaded = true
+    Hooks.callAll("monaco-editor.ready", registerTypes);
+  }
 
   if (!oldTextArea || !commandLabel) {
     throw new Error("Monaco Macro Editor | Couldn't find old text area");

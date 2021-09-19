@@ -1,6 +1,6 @@
 
     export default [
       "@league-of-foundry-developers\\foundry-vtt-types\\src\\foundry\\common\\documents.mjs\\baseTile.d.ts",
-      "import { DocumentMetadata } from '../abstract/document.mjs';\nimport { Document } from '../abstract/module.mjs';\n\n/**\n * The base Tile model definition which defines common behavior of an Tile document between both client and server.\n */\nexport declare class BaseTile extends Document<any, any> {\n  static get metadata(): Merge<\n    DocumentMetadata,\n    {\n      name: 'Tile';\n      collection: 'tiles';\n      label: 'DOCUMENT.Tile';\n      isEmbedded: true;\n    }\n  >;\n}\n"
+      "import{ConfiguredDocumentClass}from'../../../types/helperTypes';import{DocumentMetadata}from'../abstract/document.mjs';import{Document}from'../abstract/module.mjs';import*as data from'../data/data.mjs';import{BaseScene}from'./baseScene';/**\n * The base Tile model definition which defines common behavior of an Tile document between both client and server.\n */export declare class BaseTile extends Document<data.TileData,InstanceType<ConfiguredDocumentClass<typeof BaseScene>>>{/** @override */static get schema():typeof data.TileData;/** @override */static get metadata():Merge<\nDocumentMetadata,{name:'Tile';collection:'tiles';label:'DOCUMENT.Tile';isEmbedded:true;}>;}"
     ]
   

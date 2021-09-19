@@ -13,6 +13,7 @@ type Settings = {
   fontSize: number;
   wordWrap: boolean;
   enableMonacoEditor: boolean;
+  loadTypesImmediately: boolean
 };
 
 /**
@@ -63,6 +64,14 @@ export function registerSettings() {
       window.location.reload();
     },
   });
+
+  defineSetting('loadTypesAsap', {
+    default:false,
+    hint: "Load types as soon as possible. If this is false then they'll be loaded when the first editor is opened.",
+    onChange: () => {
+      window.location.reload()
+    }
+  })
 }
 
 function defineSetting<T>(

@@ -1,6 +1,6 @@
 
     export default [
       "@league-of-foundry-developers\\foundry-vtt-types\\src\\foundry\\foundry.js\\applications\\sidebarTabs\\sidebarDirectories\\rollTableDirectory.d.ts",
-      "// TODO: Remove when updating this class!!!\n// eslint-disable-next-line\n// @ts-nocheck\n\n/**\n * A directory list of RollTable entities in the Sidebar\n */\ndeclare class RollTableDirectory extends SidebarDirectory<RollTableDirectory.Options> {\n  static get defaultOptions(): RollTableDirectory.Options;\n\n  /**\n   * Reference named Entity class which this directory lists\n   */\n  static get entity(): 'RollTable';\n\n  /**\n   * Reference the EntityCollection of Entity instances which this directory lists\n   * @see {@link Game.tables}\n   */\n  static get collection(): Game['tables'];\n}\n\ndeclare namespace RollTableDirectory {\n  interface Options extends SidebarDirectory.Options {\n    /**\n     * @defaultValue `'tables'`\n     */\n    id: string;\n\n    /**\n     * @defaultValue `'templates/sidebar/roll-table-directory.html'`\n     */\n    template: string;\n\n    /**\n     * @defaultValue `'Rollable Tables Directory'`\n     */\n    title: string;\n  }\n}\n"
+      "/**\n * The sidebar directory which organizes and displays world-level RollTable documents.\n * @typeParam Options - The type of the options object\n */declare class RollTableDirectory<\nOptions extends SidebarDirectory.Options=SidebarDirectory.Options>extends SidebarDirectory<'RollTable',Options>{/** @override */static documentName:'RollTable';}"
     ]
   
