@@ -1,6 +1,6 @@
 
     export default [
-      "@league-of-foundry-developers\\foundry-vtt-types\\src\\foundry\\foundry.js\\pixi\\containers\\index.d.ts",
-      "import'./baseGrid';import'./baseGrids';import'./cachedContainer';import'./canvasLayer';import'./canvasLayers';import'./controlIcon';import'./cursor';import'./doorControl';import'./placeableObject';import'./placeableObjects';import'./ruler';"
+      "@league-of-foundry-developers/foundry-vtt-types/src/foundry/foundry.js/pixi/containers/index.d.ts",
+      "import './baseGrid';\nimport './baseGrids';\nimport './cachedContainer';\nimport './canvasLayer';\nimport './canvasLayers';\nimport './controlIcon';\nimport './cursor';\nimport './doorControl';\nimport './placeableObject';\nimport './placeableObjects';\nimport './ruler';\n"
     ]
   

@@ -110,11 +110,12 @@ export async function attachMonacoEditor(form: HTMLFormElement) {
   const select: HTMLSelectElement = form.querySelector('select[name="type"]')!;
 
   commandLabel.insertAdjacentElement("beforeend", div);
+  console.error("Monaco Editor", select?.value, (select?.value ?? "script") === "script" ? "javascript" : "plaintext")
 
   const editor = monaco.editor.create(div, {
     // editor specific
     value: oldTextArea.value,
-    language: select.value === "script" ? "javascript" : "plaintext",
+    language: (select?.value ?? "script") === "script" ? "javascript" : "plaintext",
 
     // permanent ones
     minimap: {
@@ -151,16 +152,16 @@ export async function attachMonacoEditor(form: HTMLFormElement) {
     observer.disconnect();
   });
 
-  select.addEventListener("change", (e) => {
+  select?.addEventListener("change", (e) => {
     const model = editor.getModel();
     if (!model) return;
 
     monaco.editor.setModelLanguage(
       model,
-      select.value === "script" ? "javascript" : "plaintext"
+      (select?.value ?? "script") === "script" ? "javascript" : "plaintext"
     );
 
-    if (!["script", "chat"].includes(select.value)) {
+    if (!["script", "chat"].includes((select?.value ?? "script"))) {
       console.warn(
         `Monaco Editor | Received "${select.value}" from select, defaulted to plaintext editor`
       );

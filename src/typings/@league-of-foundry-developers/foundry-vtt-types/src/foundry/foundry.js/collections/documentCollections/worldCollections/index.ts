@@ -1,6 +1,6 @@
 
     export default [
-      "@league-of-foundry-developers\\foundry-vtt-types\\src\\foundry\\foundry.js\\collections\\documentCollections\\worldCollections\\index.d.ts",
-      "import'./actors';import'./combatEncounters';import'./fogExplorations';import'./folders';import'./items';import'./journal';import'./macros';import'./messages';import'./playlists';import'./rollTables';import'./scenes';import'./users';import'./worldSettings';"
+      "@league-of-foundry-developers/foundry-vtt-types/src/foundry/foundry.js/collections/documentCollections/worldCollections/index.d.ts",
+      "import './actors';\nimport './combatEncounters';\nimport './fogExplorations';\nimport './folders';\nimport './items';\nimport './journal';\nimport './macros';\nimport './messages';\nimport './playlists';\nimport './rollTables';\nimport './scenes';\nimport './users';\nimport './worldSettings';\n"
     ]
   

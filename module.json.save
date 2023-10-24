@@ -1,0 +1,43 @@
+{
+  "title": "Monaco Macro Editor",
+  "description": "Replaces the inbuilt macro editor with the Monaco Editor (same editor as VS Code). Includes type hinting.",
+  "version": "0.0.8",
+  "authors": [
+    {
+      "name": "Naito",
+      "url": "https://github.com/laquasicinque",
+      "discord": "Naito#1235",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "dist/module.js"
+  ],
+  "styles": [
+    "styles/module.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "languages/en.json",
+      "flags": {}
+    }
+  ],
+  "url": "https://github.com/laquasicinque/monaco-macro-editor",
+  "manifest": "https://github.com/laquasicinque/monaco-macro-editor/releases/latest/download/module.json",
+  "download": "https://github.com/laquasicinque/monaco-macro-editor/releases/download/0.0.8/module.zip",
+  "media": [
+    {
+      "type": "icon",
+      "url": "https://avatars2.githubusercontent.com/u/71292812?s=400&u=ccdb4eeb7abf551ca8f314e5a9bfd0479a4d3d41&v=4",
+      "loop": false,
+      "flags": {}
+    }
+  ],
+  "id": "monaco-macro-editor",
+  "compatibility": {
+    "minimum": "0.8.5",
+    "verified": "0.8.9"
+  }
+}
