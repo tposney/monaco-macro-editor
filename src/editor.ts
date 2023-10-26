@@ -110,7 +110,6 @@ export async function attachMonacoEditor(form: HTMLFormElement) {
   const select: HTMLSelectElement = form.querySelector('select[name="type"]')!;
 
   commandLabel.insertAdjacentElement("beforeend", div);
-  console.error("Monaco Editor", select?.value, (select?.value ?? "script") === "script" ? "javascript" : "plaintext")
 
   const editor = monaco.editor.create(div, {
     // editor specific
