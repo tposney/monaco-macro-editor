@@ -1,5 +1,5 @@
 {
-  "name": "monaco-macro-editor",
+  "id": "monaco-macro-editor",
   "title": "Monaco Macro Editor",
   "description": "Replaces the inbuilt macro editor with the Monaco Editor (same editor as VS Code). Includes type hinting.",
   "version": "0.0.1",
@@ -27,12 +27,12 @@
         "name": "English",
         "path": "languages/en.json"
       }
-    ],
-    "compatibility": {
-      "minimum": "11.302",
-      "verified": "11.313",
-      "maximum": "11.999"
-    }
+    ]
+  },
+  "compatibility": {
+    "minimum": "11.302",
+    "verified": "11.313",
+    "maximum": "11.999"
   },
   "url": "This is auto replaced",
   "manifest": "This is auto replaced",
