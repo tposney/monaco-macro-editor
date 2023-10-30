@@ -12,20 +12,30 @@
       "name": "Naito",
       "url": "https://github.com/laquasicinque",
       "discord": "Naito#1235"
+    },
+    {
+      "name": "tposney",
+      "url": "https://github.com/tposney",
+      "discord": "tposney"
     }
   ],
-  "dependencies": [],
-  "conflicts": [],
   "esmodules": ["dist/module.js"],
   "scripts": [],
   "styles": ["styles/module.css"],
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "languages/en.json"
+  "relationships" : {
+    "languages": [
+      {
+        "lang": "en",
+        "name": "English",
+        "path": "languages/en.json"
+      }
+    ],
+    "compatibility": {
+      "minimum": "11.302",
+      "verified": "11.313",
+      "maximum": "11.999"
     }
-  ],
+  },
   "url": "This is auto replaced",
   "manifest": "This is auto replaced",
   "download": "This is auto replaced",
