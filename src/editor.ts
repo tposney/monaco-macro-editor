@@ -17,7 +17,7 @@ export function updateActiveEditors<T extends keyof NewOptionsType>(
   }
 }
 
-export let registerTypes = (_: string, __: string): void => {};
+export let registerTypes = (_: string, __: string): void => { };
 
 export async function setupMonaco() {
   // make sure that process.env exists before initializing monaco
@@ -68,7 +68,7 @@ export async function setupMonaco() {
     esModuleInterop: true,
   });
 
-  if(settings.loadTypesImmediately) {
+  if (settings.loadTypesImmediately) {
     Hooks.callAll("monaco-editor.ready", registerTypes);
   }
 }
@@ -77,9 +77,9 @@ let typesLoaded = false
 let monacoLoaded = false
 
 export async function attachMonacoEditor(form: HTMLFormElement) {
-  if(!monacoLoaded) {
-     // settings is not available all the time so we need to do this in fairly dumb way
-    if(!settings.delayedLoading) {
+  if (!monacoLoaded) {
+    // settings is not available all the time so we need to do this in fairly dumb way
+    if (!settings.delayedLoading) {
       monacoLoaded = true
     } else {
       await setupMonaco()
@@ -93,7 +93,7 @@ export async function attachMonacoEditor(form: HTMLFormElement) {
     ".form-group.command"
   );
 
-  if(!typesLoaded) {
+  if (!typesLoaded) {
     typesLoaded = true
     Hooks.callAll("monaco-editor.ready", registerTypes);
   }
@@ -110,7 +110,7 @@ export async function attachMonacoEditor(form: HTMLFormElement) {
   const select: HTMLSelectElement = form.querySelector('select[name="type"]')!;
 
   commandLabel.insertAdjacentElement("beforeend", div);
-
+  
   const editor = monaco.editor.create(div, {
     // editor specific
     value: oldTextArea.value,
@@ -129,7 +129,6 @@ export async function attachMonacoEditor(form: HTMLFormElement) {
     theme: settings.theme,
     fontSize: settings.fontSize,
   });
-
   activeEditors.add(editor);
 
   editor.onDidChangeModelContent(

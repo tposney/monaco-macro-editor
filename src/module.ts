@@ -31,7 +31,17 @@ Hooks.on("monaco-editor.ready", async (register: typeof registerTypes) => {
   }
 });
 
-Hooks.on("renderMacroConfig", ({ form }: { form: HTMLFormElement }) => {
+Hooks.on("renderMacroConfig", (app: any, html: any, data: any) => {
+  let { form } = app;
+  const windowSizes = {
+    "small": { width: 900, height: 650 },
+    "medium": { width: 1500, height: 1000 },
+    "large": { width: 1800, height: 1200 }
+  }
+  //@ts-expect-error
+  const size: any = windowSizes[settings.windowSize] ?? "medium";
+  console.error("Size is ", size, settings.windowSize );
+  app.setPosition(size);
   if (settings.enableMonacoEditor) {
     bailOnMacroEditor()
     furnaceFix(form);

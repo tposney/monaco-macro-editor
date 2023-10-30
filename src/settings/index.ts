@@ -15,6 +15,7 @@ type Settings = {
   enableMonacoEditor: boolean;
   loadTypesImmediately: boolean;
   delayedLoading: boolean;
+  windowSize: string;
 };
 
 /**
@@ -36,6 +37,15 @@ export function registerSettings() {
       "vs-dark": "Dark",
       vs: "Light",
       "hc-black": "High Contrast",
+    },
+  });
+
+  defineSetting("windowSize", {
+    default: "medium",
+    choices: {
+      "small": "900 x 650",
+      "medium": "1500 x 1000",
+      "large": "1800 x 1200"
     },
   });
 
