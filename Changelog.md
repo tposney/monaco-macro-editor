@@ -1,3 +1,6 @@
+### 1.0.3
+* remove accidental consoler.error left in
+
 ### 1.0.2
 * update module.json
 * add ability to change editor default window size from settings.

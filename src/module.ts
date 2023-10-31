@@ -40,7 +40,6 @@ Hooks.on("renderMacroConfig", (app: any, html: any, data: any) => {
   }
   //@ts-expect-error
   const size: any = windowSizes[settings.windowSize] ?? "medium";
-  console.error("Size is ", size, settings.windowSize );
   app.setPosition(size);
   if (settings.enableMonacoEditor) {
     bailOnMacroEditor()
