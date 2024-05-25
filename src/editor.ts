@@ -86,83 +86,106 @@ export async function attachMonacoEditor(form: HTMLFormElement) {
       monacoLoaded = true
     }
   }
-  const oldTextArea = form.querySelector<HTMLTextAreaElement>(
-    'textarea[name="command"]'
-  );
-  const commandLabel = form.querySelector<HTMLLabelElement>(
-    ".form-group.command"
-  );
-
-  if (!typesLoaded) {
-    typesLoaded = true
-    Hooks.callAll("monaco-editor.ready", registerTypes);
+  let allNames = ['command'];
+  let isTemplateMacro = false;
+  if (form.querySelector<HTMLTextAreaElement>(
+    'textarea[name="flags.templatemacro.whenCreated.command"]'
+  )) {
+    isTemplateMacro = true;
+    allNames = [
+      'whenCreated', 
+      'whenDeleted', 
+      'whenMoved', 
+      'whenHidden', 
+      'whenRevealed', 
+      'whenEntered', 
+      'whenLeft', 
+      'whenThrough', 
+      'whenStaying', 
+      'whenTurnStart', 
+      'whenTurnEnd', 
+      'never'
+    ];
   }
-
-  if (!oldTextArea || !commandLabel) {
-    throw new Error("Monaco Macro Editor | Couldn't find old text area");
-  }
-
-  oldTextArea.style.display = "none";
-
-  const div = document.createElement("div");
-  Object.assign(div.style, { width: "100%", height: "calc(100% - 24px)" });
-
-  const select: HTMLSelectElement = form.querySelector('select[name="type"]')!;
-
-  commandLabel.insertAdjacentElement("beforeend", div);
-  
-  const editor = monaco.editor.create(div, {
-    // editor specific
-    value: oldTextArea.value,
-    language: (select?.value ?? "script") === "script" ? "javascript" : "plaintext",
-
-    // permanent ones
-    minimap: {
-      enabled: false,
-    },
-    contextmenu: false,
-
-    // user changeable
-    wordWrap: settings.wordWrap ? "on" : "off",
-    fontFamily: settings.fontFamily,
-    fontLigatures: settings.fontLigatures,
-    theme: settings.theme,
-    fontSize: settings.fontSize,
-  });
-  activeEditors.add(editor);
-
-  editor.onDidChangeModelContent(
-    debounce(() => {
-      oldTextArea.value = editor.getValue();
-    })
-  );
-
-  const observer = new ResizeObserver(() => {
-    editor.layout({ height: 0, width: 0 });
-    editor.layout();
-  });
-  observer.observe(editor.getContainerDomNode());
-
-  form.addEventListener("submit", () => {
-    activeEditors.delete(editor);
-    editor.dispose();
-    // probably unnecessary but we should clean up after ourselves.
-    observer.disconnect();
-  });
-
-  select?.addEventListener("change", (e) => {
-    const model = editor.getModel();
-    if (!model) return;
-
-    monaco.editor.setModelLanguage(
-      model,
-      (select?.value ?? "script") === "script" ? "javascript" : "plaintext"
+  for (let currName of allNames) {
+    const oldTextArea = form.querySelector<HTMLTextAreaElement>(
+      isTemplateMacro ? `textarea[name="flags.templatemacro.${currName}.command"]` : 'textarea[name="command"]'
     );
-
-    if (!["script", "chat"].includes((select?.value ?? "script"))) {
-      console.warn(
-        `Monaco Editor | Received "${select.value}" from select, defaulted to plaintext editor`
-      );
+    const commandLabel = form.querySelector<HTMLLabelElement>(
+      isTemplateMacro ? `.form-group.command[data-type="${currName}"]` : ".form-group.command"
+    );
+  
+    if (!typesLoaded) {
+      typesLoaded = true
+      Hooks.callAll("monaco-editor.ready", registerTypes);
     }
-  });
+  
+    if (!oldTextArea || !commandLabel) {
+      throw new Error("Monaco Macro Editor | Couldn't find old text area");
+    }
+  
+    oldTextArea.style.display = "none";
+  
+    const div = document.createElement("div");
+    Object.assign(div.style, { width: "100%", height: "calc(100% - 24px)" });
+  
+    const select: HTMLSelectElement = form.querySelector('select[name="type"]')!;
+  
+    commandLabel.insertAdjacentElement("beforeend", div);
+    
+    const editor = monaco.editor.create(div, {
+      // editor specific
+      value: oldTextArea.value,
+      language: (select?.value ?? "script") === "script" ? "javascript" : "plaintext",
+  
+      // permanent ones
+      minimap: {
+        enabled: false,
+      },
+      contextmenu: false,
+  
+      // user changeable
+      wordWrap: settings.wordWrap ? "on" : "off",
+      fontFamily: settings.fontFamily,
+      fontLigatures: settings.fontLigatures,
+      theme: settings.theme,
+      fontSize: settings.fontSize,
+    });
+    activeEditors.add(editor);
+  
+    editor.onDidChangeModelContent(
+      debounce(() => {
+        oldTextArea.value = editor.getValue();
+      })
+    );
+  
+    const observer = new ResizeObserver(() => {
+      editor.layout({ height: 0, width: 0 });
+      editor.layout();
+    });
+    observer.observe(editor.getContainerDomNode());
+  
+    form.addEventListener("submit", () => {
+      activeEditors.delete(editor);
+      editor.dispose();
+      // probably unnecessary but we should clean up after ourselves.
+      observer.disconnect();
+    });
+  
+    select?.addEventListener("change", (e) => {
+      const model = editor.getModel();
+      if (!model) return;
+  
+      monaco.editor.setModelLanguage(
+        model,
+        (select?.value ?? "script") === "script" ? "javascript" : "plaintext"
+      );
+  
+      if (!["script", "chat"].includes((select?.value ?? "script"))) {
+        console.warn(
+          `Monaco Editor | Received "${select.value}" from select, defaulted to plaintext editor`
+        );
+      }
+    });
+  }
 }
