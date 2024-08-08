@@ -164,12 +164,17 @@ export async function attachMonacoEditor(form: HTMLFormElement) {
       editor.layout();
     });
     observer.observe(editor.getContainerDomNode());
-  
-    form.addEventListener("submit", () => {
-      activeEditors.delete(editor);
-      editor.dispose();
-      // probably unnecessary but we should clean up after ourselves.
-      observer.disconnect();
+
+    let hookIndex: number;
+
+    hookIndex = Hooks.on('closeMacroConfig', (_: any, el: JQuery) => {
+      if (el.has(form).length) {
+        Hooks.off('closeMacroConfig', hookIndex);
+        activeEditors.delete(editor);
+        editor.dispose();
+        // probably unnecessary but we should clean up after ourselves.
+        observer.disconnect();
+      }
     });
   
     select?.addEventListener("change", (e) => {
