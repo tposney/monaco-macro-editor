@@ -33,6 +33,7 @@ Hooks.on("monaco-editor.ready", async (register: typeof registerTypes) => {
 
 Hooks.on("renderMacroConfig", (app: any, html: any, data: any) => {
   let { form } = app;
+  if (!form) form = app.element;
   const windowSizes = {
     "small": { width: 900, height: 650 },
     "medium": { width: 1500, height: 1000 },
